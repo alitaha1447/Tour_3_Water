@@ -35,6 +35,8 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+
     <style>
         :root {
             --saffron: #ff9933;
@@ -164,7 +166,36 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* Date input placeholder styling */
+        input[type="date"] {
+            position: relative;
+        }
+
+        input[type="date"]:invalid:before {
+            content: attr(placeholder);
+            position: absolute;
+            top: 50%;
+            left: 12px;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+        }
+
+        /* For mobile devices specifically */
+        @media (max-width: 767.98px) {
+            input[type="date"] {
+                min-height: 44px;
+                /* Better touch target */
+            }
+
+            input[type="date"]:invalid:before {
+                left: 15px;
+                font-size: 14px;
+            }
+        }
     </style>
+
 </head>
 
 <body>
@@ -259,8 +290,13 @@
                                             </select>
                                         </div> -->
                                         <div class="col-12 col-xl-6">
-                                            <input type="date" class="form-control border-0" id="visit-date"
-                                                placeholder="Visit Date" />
+                                            <!-- <input type="date" class="form-control" id="exampleDateInput"> -->
+                                            <!-- <input type="date" class="form-control border-0 py-2" id="exampleDateInput"
+                                                placeholder="Select Date"> -->
+                                            <input type="text" class="form-control border-0 py-2" id="exampleDateInput"
+                                                placeholder="Select Date" onfocus="(this.type='date')"
+                                                onblur="if(!this.value)this.type='text'">
+
                                         </div>
                                         <div class="col-12">
                                             <textarea id="tour-detail" name="tour_detail"
